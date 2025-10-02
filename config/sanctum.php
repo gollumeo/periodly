@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'stateful' => array_values(array_unique(array_filter(explode(',', env('SANCTUM_STATEFUL_DOMAINS', implode(',', array_filter([
+    'stateful' => array_filter([
+        ...array_map('trim', explode(',', env('SANCTUM_STATEFUL_DOMAINS', ''))),
         'localhost',
         'localhost:3000',
         '127.0.0.1',
@@ -23,7 +24,7 @@ return [
         '::1',
         Sanctum::currentApplicationUrlWithPort(),
         Sanctum::currentRequestHost(),
-    ]))))))),
+    ]),
 
     /*
     |--------------------------------------------------------------------------
