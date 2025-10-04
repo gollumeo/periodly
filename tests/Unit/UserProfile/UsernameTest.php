@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Domain\User\Exceptions\InvalidUsername;
+use Domain\User\Exceptions\TooLongUsername;
 use Domain\User\ValueObjects\Username;
 
 describe('Unit: Username', function (): void {
@@ -18,10 +19,22 @@ describe('Unit: Username', function (): void {
     });
 
     it('cannot exceed 240 chars', function (): void {
-        expect(fn () => new Username(str_repeat('a', 241)))->toThrow(TooLongUsername::class);
+        expect(
+            /**
+             * @throws InvalidUsername
+             * @throws TooLongUsername
+             */
+            fn () => new Username(str_repeat('a', 241))
+        )->toThrow(TooLongUsername::class);
     });
 
-    it('can be created with a valid length', function (): void {
-        expect(fn () => new Username(str_repeat('a', 15)))->not->toThrow(Throwable::class);
+    it('accepts a valid length', function (): void {
+        expect(
+            /**
+             * @throws InvalidUsername
+             * @throws TooLongUsername
+             */
+            fn () => new Username(str_repeat('a', 15))
+        )->not->toThrow(Throwable::class);
     });
 });
