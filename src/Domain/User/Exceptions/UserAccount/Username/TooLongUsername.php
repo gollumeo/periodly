@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Exceptions;
+namespace Domain\User\Exceptions\UserAccount\Username;
 
 use Exception;
 

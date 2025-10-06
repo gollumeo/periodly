@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Domain\User\Exceptions\InvalidUsername;
-use Domain\User\Exceptions\TooLongUsername;
-use Domain\User\ValueObjects\Username;
+use Domain\User\Exceptions\UserAccount\Username\InvalidUsername;
+use Domain\User\Exceptions\UserAccount\Username\TooLongUsername;
+use Domain\User\ValueObjects\UserAccount\Username;
 
 describe('Unit: Username', function (): void {
     it('cannot be empty', function (): void {

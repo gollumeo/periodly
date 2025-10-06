@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\ValueObjects;
+namespace Domain\User\ValueObjects\UserAccount;
 
-use Domain\User\Exceptions\InvalidUsername;
-use Domain\User\Exceptions\TooLongUsername;
+use Domain\User\Exceptions\UserAccount\Username\InvalidUsername;
+use Domain\User\Exceptions\UserAccount\Username\TooLongUsername;
 
 final readonly class Username
 {

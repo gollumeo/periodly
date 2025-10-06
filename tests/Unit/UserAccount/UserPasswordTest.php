@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Domain\User\Exceptions\InvalidCharsetUserPassword;
-use Domain\User\Exceptions\InvalidUserPassword;
-use Domain\User\Exceptions\TooShortUserPassword;
-use Domain\User\ValueObjects\UserPassword;
+use Domain\User\Exceptions\UserAccount\UserPassword\InvalidCharsetUserPassword;
+use Domain\User\Exceptions\UserAccount\UserPassword\InvalidUserPassword;
+use Domain\User\Exceptions\UserAccount\UserPassword\TooShortUserPassword;
+use Domain\User\ValueObjects\UserAccount\UserPassword;
 
 describe('Unit: Password', function (): void {
     it('cannot be empty', function (): void {

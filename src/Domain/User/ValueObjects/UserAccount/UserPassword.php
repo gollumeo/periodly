@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\ValueObjects;
+namespace Domain\User\ValueObjects\UserAccount;
 
-use Domain\User\Exceptions\InvalidCharsetUserPassword;
-use Domain\User\Exceptions\InvalidUserPassword;
-use Domain\User\Exceptions\TooShortUserPassword;
+use Domain\User\Exceptions\UserAccount\UserPassword\InvalidCharsetUserPassword;
+use Domain\User\Exceptions\UserAccount\UserPassword\InvalidUserPassword;
+use Domain\User\Exceptions\UserAccount\UserPassword\TooShortUserPassword;
 
 final readonly class UserPassword
 {
     /**
      * @throws InvalidUserPassword
-     * @throws TooShortUserPassword
+     * @throws TooShortUserPassword|InvalidCharsetUserPassword
      */
     public function __construct(private string $password)
     {
