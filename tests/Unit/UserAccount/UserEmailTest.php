@@ -15,4 +15,8 @@ describe('Unit: User Email', function (): void {
                 fn () => new UserEmail(null)
             )->toThrow(TypeError::class);
     });
+
+    it('must be a valid email format', function (): void {
+        //
+    });
 });
