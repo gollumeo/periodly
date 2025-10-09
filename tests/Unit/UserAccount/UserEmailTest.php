@@ -7,15 +7,15 @@ use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmailCharset;
 use Domain\User\ValueObjects\UserAccount\UserEmail;
 
 describe('Unit: User Email', function (): void {
-    it('cannot be empty', function (): void {
+    it('cannot be empty', function (string $userEmail): void {
         expect(
-            fn () => new UserEmail('')
+            fn () => new UserEmail($userEmail)
         )->toThrow(InvalidUserEmail::class)
             ->and(
                 // @phpstan-ignore-next-line
                 fn () => new UserEmail(null)
             )->toThrow(TypeError::class);
-    });
+    })->with(['', ' ']);
 
     it('must be a valid email format', function (): void {
         expect(
