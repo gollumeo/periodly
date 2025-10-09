@@ -12,14 +12,16 @@ final class UserEmail
     /**
      * @throws InvalidUserEmail|InvalidUserEmailCharset
      */
-    public function __construct(string $userEmail)
+    public function __construct(private string $userEmail)
     {
-        if ($userEmail === '') {
+        if (mb_trim($userEmail) === '') {
             throw new InvalidUserEmail();
         }
 
         if (! preg_match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i', $userEmail)) {
             throw new InvalidUserEmailCharset();
         }
+
+        $this->userEmail = mb_strtolower($userEmail);
     }
 }
