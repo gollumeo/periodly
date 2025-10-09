@@ -38,4 +38,11 @@ describe('Unit: User Email', function (): void {
         'sick.for.a@week.xyz',
         'lol-periodAccount@bwipo.ass',
     ]);
+
+    it('is not case sensitive', function (): void {
+        $firstEmail = new UserEmail('ThisIsA@test.com');
+        $secondEmail = new UserEmail('thisisa@test.com');
+
+        expect($firstEmail)->toEqual($secondEmail);
+    });
 });
