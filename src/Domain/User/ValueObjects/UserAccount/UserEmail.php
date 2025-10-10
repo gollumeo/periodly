@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Domain\User\ValueObjects\UserAccount;
 
 use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmail;
-use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmailCharset;
+use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmailFormat;
 
 final class UserEmail
 {
     /**
-     * @throws InvalidUserEmail|InvalidUserEmailCharset
+     * @throws InvalidUserEmail|InvalidUserEmailFormat
      */
     public function __construct(private string $userEmail)
     {
@@ -19,7 +19,7 @@ final class UserEmail
         }
 
         if (! preg_match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i', $userEmail)) {
-            throw new InvalidUserEmailCharset();
+            throw new InvalidUserEmailFormat();
         }
 
         $this->userEmail = mb_strtolower($userEmail);
