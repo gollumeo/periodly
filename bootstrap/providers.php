@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
+
 return [
-    Infrastructure\Laravel\Providers\AppServiceProvider::class,
 ];
