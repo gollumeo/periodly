@@ -7,7 +7,7 @@ use Infrastructure\Laravel\Providers\Core\MiddlewareServiceProvider;
 use Infrastructure\Laravel\Providers\Core\RouteServiceProvider;
 
 return [
-    RouteServiceProvider::class,
-    MiddlewareServiceProvider::class,
     ExceptionServiceProvider::class,
+    MiddlewareServiceProvider::class,
+    RouteServiceProvider::class,
 ];
