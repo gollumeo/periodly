@@ -8,7 +8,7 @@ use Domain\User\Exceptions\UserAccount\UserPassword\InvalidCharsetUserPassword;
 use Domain\User\Exceptions\UserAccount\UserPassword\InvalidUserPassword;
 use Domain\User\Exceptions\UserAccount\UserPassword\TooShortUserPassword;
 
-final readonly class UserPassword
+final readonly class PlainPassword
 {
     /**
      * @throws InvalidUserPassword

@@ -5,22 +5,22 @@ declare(strict_types=1);
 use Domain\User\Exceptions\UserAccount\UserPassword\InvalidCharsetUserPassword;
 use Domain\User\Exceptions\UserAccount\UserPassword\InvalidUserPassword;
 use Domain\User\Exceptions\UserAccount\UserPassword\TooShortUserPassword;
-use Domain\User\ValueObjects\UserAccount\UserPassword;
+use Domain\User\ValueObjects\UserAccount\PlainPassword;
 
 describe('Unit: Password', function (): void {
     it('cannot be empty', function (): void {
         expect(
-            fn () => new UserPassword('')
+            fn () => new PlainPassword('')
         )->toThrow(InvalidUserPassword::class)
             ->and(
                 // @phpstan-ignore-next-line
-                fn () => new UserPassword(null)
+                fn () => new PlainPassword(null)
             )->toThrow(TypeError::class);
     });
 
     it('must be at least 6 characters', function (): void {
         expect(
-            fn () => new UserPassword('123')
+            fn () => new PlainPassword('123')
         )->toThrow(TooShortUserPassword::class);
     });
 
@@ -30,7 +30,7 @@ describe('Unit: Password', function (): void {
              * @throws TooShortUserPassword
              * @throws InvalidUserPassword
              */
-            fn () => new UserPassword($password)
+            fn () => new PlainPassword($password)
         )->toThrow(InvalidCharsetUserPassword::class);
     })->with([
         'password123.',
@@ -42,7 +42,7 @@ describe('Unit: Password', function (): void {
 
     it('accepts a valid password', function (): void {
         expect(
-            fn () => new UserPassword('MySuperPassword1!')
+            fn () => new PlainPassword('MySuperPassword1!')
         )->not->toThrow(Throwable::class);
     });
 });
