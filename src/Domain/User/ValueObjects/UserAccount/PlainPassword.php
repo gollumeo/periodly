@@ -8,24 +8,32 @@ use Domain\User\Exceptions\UserAccount\UserPassword\InvalidCharsetUserPassword;
 use Domain\User\Exceptions\UserAccount\UserPassword\InvalidUserPassword;
 use Domain\User\Exceptions\UserAccount\UserPassword\TooShortUserPassword;
 
-final readonly class PlainPassword
+final class PlainPassword
 {
+    private const string PATTERN = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z\d]).+$/';
+
+    private const int MIN_LENGTH = 8;
+
     /**
+     * @throws InvalidCharsetUserPassword
+     * @throws TooShortUserPassword
      * @throws InvalidUserPassword
-     * @throws TooShortUserPassword|InvalidCharsetUserPassword
      */
     public function __construct(private string $password)
     {
-        if ($this->password === '') {
+        $trimmedPassword = mb_trim($this->password);
+        if ($trimmedPassword === '') {
             throw new InvalidUserPassword();
         }
 
-        if (mb_strlen($this->password) < 6) {
+        if (mb_strlen($this->password) < self::MIN_LENGTH) {
             throw new TooShortUserPassword();
         }
 
-        if (! preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z\d]).+$/', $this->password)) {
+        if (! preg_match(self::PATTERN, $this->password)) {
             throw new InvalidCharsetUserPassword();
         }
+
+        $this->password = $trimmedPassword;
     }
 }
