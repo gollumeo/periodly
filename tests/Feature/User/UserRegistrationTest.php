@@ -2,17 +2,30 @@
 
 declare(strict_types=1);
 
-use Domain\User\ValueObjects\UserAccount\UserEmail;
-use Domain\User\ValueObjects\UserAccount\Username;
-
 describe('Feature: User registration', function (): void {
-    it('creates a new user based on user account data', function (): void {
-        $email = new UserEmail('test@test.com');
-        $username = new Username('d@mn-periods');
-        $password = new Password('Strongp4ss!');
-        $userAccount = new UserAccount($email, $username, $password);
+    it('registers a new user with valid credentials', function (): void {
+        $users = new InMemoryUsers();
+        $passwordHash = new HashPassword();
+        $events = new FakeEventBus();
 
-        $registerUser = new RegisterUser(); // use case
-        $userId = ($registerUser)($userAccount); // invokable
+        $registerUser = new RegisterUser($users, $passwordHash, $events);
+
+        $userAccount = new UserAccount(
+            new Username('d@mn-periods'),
+            new UserEmail('test@test.com'),
+            new PlainPassword('Strongp4ss!')
+        );
+
+        $userId = $registerUser($userAccount);
+
+        expect($userId)->toBeInstanceOf(UserId::class);
+
+        $user = $users->findById($userId);
+        expect($user)->not->toBeNull()
+            ->and($user->username())->toBe('d@mn-periods')
+            ->and($user->email())->toBe('test@test.com')
+            ->and($user->accountStatus())->toBe(UserAccountStatus::Registered)
+            ->and($events->recorded())->toHaveCount(1)
+            ->first()->toBeInstanceOf(UserWasRegistered::class);
     });
 })->skip('todo');
