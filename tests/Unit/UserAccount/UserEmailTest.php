@@ -6,6 +6,7 @@ use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmail;
 use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmailFormat;
 use Domain\User\ValueObjects\UserAccount\UserEmail;
 
+/** @noinspection PhpUnhandledExceptionInspection */
 describe('Unit: User Email', function (): void {
     it('cannot be empty', function (string $userEmail): void {
         expect(
@@ -25,10 +26,6 @@ describe('Unit: User Email', function (): void {
 
     it('accepts a valid email address', function (string $userEmail): void {
         expect(
-            /**
-             * @throws InvalidUserEmail
-             * @throws InvalidUserEmailFormat
-             */
             fn () => new UserEmail($userEmail)
         )->not->toThrow(Throwable::class);
     })->with([
