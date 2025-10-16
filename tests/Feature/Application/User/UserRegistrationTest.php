@@ -28,4 +28,4 @@ describe('Feature: User registration', function (): void {
             ->and($events->recorded())->toHaveCount(1)
             ->first()->toBeInstanceOf(UserWasRegistered::class);
     });
-})->skip('todo');
+});
