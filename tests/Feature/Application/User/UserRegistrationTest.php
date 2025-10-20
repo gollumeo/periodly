@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Domain\User\ValueObjects\UserAccount\UserAccountStatus;
+
 describe('Feature: User registration', function (): void {
     it('registers a new user with valid credentials', function (): void {
         $users = new InMemoryUsers();
