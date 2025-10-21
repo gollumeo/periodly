@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
+use Domain\User\ValueObjects\UserAccount\PlainPassword;
+use Domain\User\ValueObjects\UserAccount\UserAccount;
 use Domain\User\ValueObjects\UserAccount\UserAccountStatus;
+use Domain\User\ValueObjects\UserAccount\UserEmail;
+use Domain\User\ValueObjects\UserAccount\Username;
 
 describe('Feature: User registration', function (): void {
     it('registers a new user with valid credentials', function (): void {
@@ -13,8 +17,8 @@ describe('Feature: User registration', function (): void {
         $registerUser = new RegisterUser($users, $hashPassword, $events);
 
         $userAccount = new UserAccount(
-            new Username('d@mn-periods'),
             new UserEmail('test@test.com'),
+            new Username('d@mn-periods'),
             new PlainPassword('Strongp4ss!')
         );
 
