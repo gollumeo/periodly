@@ -23,7 +23,6 @@ describe('Feature: User registration', function (): void {
         );
 
         $userId = $registerUser($userAccount);
-
         expect($userId)->toBeInstanceOf(UserId::class);
 
         $user = $users->findById($userId);
