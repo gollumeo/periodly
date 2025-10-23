@@ -9,12 +9,15 @@ use Domain\User\ValueObjects\UserAccount\UserEmail;
 
 final class InMemoryUsers implements UserRepositoryContract
 {
-    public function findById(int $userId)
+    /** @var int[] */
+    private array $users;
+
+    public function findById(int $userId): ?int
     {
-        // TODO: Implement findById() method.
+        return $this->users[$userId] ?? null;
     }
 
-    public function findByEmail(UserEmail $email)
+    public function findByEmail(UserEmail $email): ?int
     {
         // TODO: Implement findByEmail() method.
     }
@@ -25,5 +28,10 @@ final class InMemoryUsers implements UserRepositoryContract
     public function all(): array
     {
         // TODO: Implement all() method.
+    }
+
+    public function add(): void
+    {
+        // TODO: Implement add() method.
     }
 }
