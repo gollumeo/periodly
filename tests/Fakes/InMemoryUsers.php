@@ -30,8 +30,8 @@ final class InMemoryUsers implements UserRepositoryContract
         // TODO: Implement all() method.
     }
 
-    public function add(): void
+    public function add(int $id): void
     {
-        // TODO: Implement add() method.
+        $this->users[$id] = $id;
     }
 }

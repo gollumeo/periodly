@@ -17,5 +17,5 @@ interface UserRepositoryContract
      */
     public function all(): array;
 
-    public function add(): void;
+    public function add(int $id): void;
 }
