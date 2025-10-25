@@ -20,7 +20,7 @@ describe('Feature: User registration', function (): void {
         $userAccount = new UserAccount(
             new UserEmail('test@test.com'),
             new Username('d@mn-periods'),
-            new PlainPassword('Strongp4ss!')
+            new PlainPassword('Strongp4ssword!')
         );
 
         $userId = $registerUser($userAccount);
