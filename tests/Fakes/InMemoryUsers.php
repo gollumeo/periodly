@@ -27,7 +27,7 @@ final class InMemoryUsers implements UserRepositoryContract
      */
     public function all(): array
     {
-        // TODO: Implement all() method.
+        return $this->users;
     }
 
     public function add(int $id): void
