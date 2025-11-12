@@ -6,27 +6,26 @@ use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmail;
 use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmailFormat;
 use Domain\User\ValueObjects\UserAccount\UserEmail;
 
-/** @noinspection PhpUnhandledExceptionInspection */
 describe('Unit: User Email', function (): void {
     it('cannot be empty', function (string $userEmail): void {
         expect(
-            fn () => new UserEmail($userEmail)
+            fn () => UserEmail::fromString($userEmail)
         )->toThrow(InvalidUserEmail::class)
             ->and(
                 // @phpstan-ignore-next-line
-                fn () => new UserEmail(null)
+                fn () => UserEmail::fromString(null)
             )->toThrow(TypeError::class);
     })->with(['', ' ']);
 
     it('must be a valid email format', function (): void {
         expect(
-            fn () => new UserEmail('email')
+            fn () => UserEmail::fromString('email')
         )->toThrow(InvalidUserEmailFormat::class);
     });
 
     it('accepts a valid email address', function (string $userEmail): void {
         expect(
-            fn () => new UserEmail($userEmail)
+            fn () => UserEmail::fromString($userEmail)
         )->not->toThrow(Throwable::class);
     })->with([
         'janedoe@periodly.be',
@@ -37,8 +36,8 @@ describe('Unit: User Email', function (): void {
     ]);
 
     it('is not case sensitive', function (): void {
-        $firstEmail = new UserEmail('ThisIsA@test.com');
-        $secondEmail = new UserEmail('thisisa@test.com');
+        $firstEmail = UserEmail::fromString('ThisIsA@test.com');
+        $secondEmail = UserEmail::fromString('thisisa@test.com');
 
         expect($firstEmail)->toEqual($secondEmail);
     });
