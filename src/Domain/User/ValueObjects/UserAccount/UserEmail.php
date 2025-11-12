@@ -7,21 +7,34 @@ namespace Domain\User\ValueObjects\UserAccount;
 use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmail;
 use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmailFormat;
 
-final class UserEmail
+final readonly class UserEmail
 {
-    /**
-     * @throws InvalidUserEmail|InvalidUserEmailFormat
-     */
-    public function __construct(private string $userEmail)
+    public function __construct(private string $value) {}
+
+    public function __toString(): string
     {
-        if (mb_trim($userEmail) === '') {
+        return $this->value;
+    }
+
+    /**
+     * @throws InvalidUserEmail
+     * @throws InvalidUserEmailFormat
+     */
+    public static function fromString(string $value): self
+    {
+        if (mb_trim($value) === '') {
             throw new InvalidUserEmail();
         }
 
-        if (! preg_match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i', $userEmail)) {
+        if (! preg_match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i', $value)) {
             throw new InvalidUserEmailFormat();
         }
 
-        $this->userEmail = mb_strtolower($userEmail);
+        return new self(mb_strtolower($value));
+    }
+
+    public function value(): string
+    {
+        return $this->value;
     }
 }
