@@ -7,7 +7,6 @@ use Domain\User\Exceptions\UserAccount\UserPassword\InvalidUserPassword;
 use Domain\User\Exceptions\UserAccount\UserPassword\TooShortUserPassword;
 use Domain\User\ValueObjects\UserAccount\PlainPassword;
 
-/** @noinspection PhpUnhandledExceptionInspection */
 describe('Unit: Plain Password', function (): void {
     it('cannot be empty', function (): void {
         expect(

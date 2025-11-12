@@ -6,7 +6,6 @@ use Domain\User\Exceptions\UserAccount\Username\InvalidUsername;
 use Domain\User\Exceptions\UserAccount\Username\TooLongUsername;
 use Domain\User\ValueObjects\UserAccount\Username;
 
-/** @noinspection PhpUnhandledExceptionInspection */
 describe('Unit: Username', function (): void {
     it('cannot be empty', function (): void {
         expect(
