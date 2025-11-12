@@ -6,7 +6,6 @@ use Domain\User\Exceptions\InvalidUserId;
 use Domain\User\ValueObjects\UserId;
 use Tests\Fakes\FakeUuid;
 
-/** @noinspection PhpUnhandledExceptionInspection */
 describe('Unit: User Id', function (): void {
     it('can be generated as a valid UUID v4', function (): void {
         $uuid = new FakeUuid();
