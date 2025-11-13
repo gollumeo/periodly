@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+
+use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmail;
+use Domain\User\Exceptions\UserAccount\UserEmail\InvalidUserEmailFormat;
+use Domain\User\ValueObjects\UserAccount\UserEmail;
+
+describe('Unit: User Email', function (): void {
+    it('cannot be empty', function (string $userEmail): void {
+        expect(
+            fn () => UserEmail::fromString($userEmail)
+        )->toThrow(InvalidUserEmail::class)
+            ->and(
+                // @phpstan-ignore-next-line
+                fn () => UserEmail::fromString(null)
+            )->toThrow(TypeError::class);
+    })->with(['', ' ']);
+
+    it('must be a valid email format', function (): void {
+        expect(
+            fn () => UserEmail::fromString('email')
+        )->toThrow(InvalidUserEmailFormat::class);
+    });
+
+    it('accepts a valid email address', function (string $userEmail): void {
+        expect(
+            fn () => UserEmail::fromString($userEmail)
+        )->not->toThrow(Throwable::class);
+    })->with([
+        'janedoe@periodly.be',
+        'jane_doe@email.com',
+        'iHate@myPeriods.io',
+        'sick.for.a@week.xyz',
+        'lol-periodAccount@bwipo.ass',
+    ]);
+
+    it('is not case sensitive', function (): void {
+        $firstEmail = UserEmail::fromString('ThisIsA@test.com');
+        $secondEmail = UserEmail::fromString('thisisa@test.com');
+
+        expect($firstEmail)->toEqual($secondEmail);
+    });
+});
