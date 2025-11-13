@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Fakes;
 
-use Application\Contracts\Shared\UuidContract;
+use Application\Contracts\User\UuidContract;
 use Domain\User\Exceptions\InvalidUserId;
 
 final readonly class FakeUuid implements UuidContract

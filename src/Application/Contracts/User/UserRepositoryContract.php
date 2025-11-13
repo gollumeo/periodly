@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Contracts\Shared;
+namespace Application\Contracts\User;
 
 use Domain\User\ValueObjects\UserAccount\UserEmail;
 

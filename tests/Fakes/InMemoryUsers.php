@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Fakes;
 
-use Application\Contracts\Shared\UserRepositoryContract;
+use Application\Contracts\User\UserRepositoryContract;
 use Domain\User\ValueObjects\UserAccount\UserEmail;
 
 final class InMemoryUsers implements UserRepositoryContract
