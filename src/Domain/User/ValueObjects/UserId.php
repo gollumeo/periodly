@@ -1,16 +1,18 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Domain\User\ValueObjects;
 
-use Application\Contracts\Shared\UuidContract;
+use Application\Contracts\User\UuidContract;
 
 final readonly class UserId
 {
     private function __construct(
         private string $value,
-    ) {}
+    )
+    {
+    }
 
     public static function generate(UuidContract $uuid): self
     {
