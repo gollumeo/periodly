@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Uuid;
 
-use Application\Contracts\User\UuidContract;
+use Application\Contracts\Shared\UuidContract;
 use Domain\User\Exceptions\InvalidUserId;
 use Ramsey\Uuid\Uuid;
 
