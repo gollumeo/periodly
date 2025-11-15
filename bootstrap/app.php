@@ -1,7 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Exceptions\Handler;
 
-return Application::configure(basePath: dirname(__DIR__))->create();
+
+$app = Application::configure(basePath: dirname(__DIR__))->create();
+
+$app->singleton(
+    ExceptionHandler::class,
+    Handler::class
+);
+
+return $app;
