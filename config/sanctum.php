@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Laravel\Sanctum\Sanctum;
 
 return [
@@ -66,7 +68,7 @@ return [
     |
     */
 
-    'token_prefix' => env('SANCTUM_TOKEN_PREFIX', 'periodly_'),
+    'token_prefix' => env('SANCTUM_TOKEN_PREFIX', 'laravel-arkanium_'),
 
     /*
     |--------------------------------------------------------------------------
