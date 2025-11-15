@@ -28,11 +28,11 @@ describe('Unit: User Email', function (): void {
             fn () => UserEmail::fromString($userEmail)
         )->not->toThrow(Throwable::class);
     })->with([
-        'janedoe@periodly.be',
+        'janedoe@arkanium.dev',
         'jane_doe@email.com',
-        'iHate@myPeriods.io',
-        'sick.for.a@week.xyz',
-        'lol-periodAccount@bwipo.ass',
+        'my@Precious.lotr',
+        'gotta-forge@ebonhold.wow',
+        'test@test.io',
     ]);
 
     it('is not case sensitive', function (): void {
