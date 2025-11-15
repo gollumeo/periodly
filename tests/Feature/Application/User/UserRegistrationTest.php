@@ -6,7 +6,7 @@ use Domain\User\ValueObjects\UserAccount\PlainPassword;
 use Domain\User\ValueObjects\UserAccount\UserAccount;
 use Domain\User\ValueObjects\UserAccount\UserEmail;
 use Domain\User\ValueObjects\UserAccount\Username;
-use Tests\Fakes\InMemoryUsers;
+use Domain\User\ValueObjects\UserId;
 
 describe('Feature: Register User', function (): void {
     it('registers a new user with valid credentials', function (): void {
