@@ -8,7 +8,7 @@ use Domain\Shared\Contracts\ValueObjectContract;
 
 abstract class StringValueObject implements ValueObjectContract
 {
-    public function __construct(private readonly string $value) {}
+    private function __construct(private readonly string $value) {}
 
     final public function __toString(): string
     {
