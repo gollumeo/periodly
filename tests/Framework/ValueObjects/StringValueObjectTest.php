@@ -34,4 +34,9 @@ describe('Framework: String Value Object', function (): void {
     it('validates the input during construction', function (): void {
         expect(fn () => FakeStringVO::fromString(''))->toThrow(InvalidArgumentException::class);
     });
+
+    it('cannot be instantiated directly using `new`', function (): void {
+        // @phpstan-ignore-next-line
+        expect(fn () => new FakeStringVO('abc'))->toThrow(Error::class);
+    });
 });
