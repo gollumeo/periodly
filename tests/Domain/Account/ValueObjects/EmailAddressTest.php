@@ -12,5 +12,6 @@ describe('Domain: Account Email Address', function (): void {
         "   \t   ",
         "\n",
         "\r\n",
+        '<PHP_EOL>',
     ]);
 });
